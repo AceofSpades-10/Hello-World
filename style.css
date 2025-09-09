@@ -1,0 +1,44 @@
+/* Reset & global box-sizing */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.6;
+  background: #f9fafb;
+  color: #111827;
+}
+
+/* Container */
+.container {
+  max-width: 820px;
+  margin: 48px auto;
+  padding: 0 20px;
+}
+
+/* Image */
+.cover img {
+  display: block;
+  max-width: 520px;
+  width: 100%;
+  height: auto;
+  margin: 0 auto 24px; /* centers the image */
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Text utilities */
+.blue { color: #1e64c8; }
+.red { color: #f10530; }
+.bold { font-weight: 700; }
+.underline { text-decoration: underline; }
+.highlight-yellow { background: #f0a501; }
+
+/* Paragraphs */
+p {
+  font-size: 1.05rem;
+  max-width: 520px;      /* limits paragraph width */
+  margin: 0 auto 1.5em;  /* centers and adds spacing between paragraphs */
+}
