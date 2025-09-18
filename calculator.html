@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Simple JavaScript Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <style>
+    /* -------------------------------
+       CSS VARIABLES (THEME COLORS)
+       ------------------------------- */
+    :root{
+      --bg: #0f172a;         /* dark background */
+      --card: rgba(255,255,255,.08); /* translucent card bg */
+      --text: #e5e7eb;       /* light gray text */
+      --muted: #94a3b8;      /* muted text */
+      --accent: #7c3aed;     /* violet accent */
+      --accent-2: #06b6d4;   /* cyan accent */
+      --row: rgba(255,255,255,.04); /* zebra stripe bg */
+      --error: #fecaca;      /* error row bg */
+      --errorText:#7f1d1d;   /* error row text */
+      --border: rgba(255,255,255,.12); /* subtle border */
+      --shadow: 0 10px 30px rgba(0,0,0,.35); /* card shadow */
+      --radius: 16px;        /* rounded corners */
+    }
+
+    /* LIGHT MODE OVERRIDES */
+    @media (prefers-color-scheme: light) {
+      :root{
+        --bg: #f8fafc;
+        --card: #ffffff;
+        --text:#0f172a;
+        --muted:#64748b;
+        --row:#f8fafc;
+        --error:#fee2e2;
+        --errorText:#7f1d1d;
+        --border:#e5e7eb;
+        --shadow: 0 12px 32px rgba(2,6,23,.08);
+      }
+    }
+
+    /* -------------------------------
+       GLOBAL STYLES
+       ------------------------------- */
+    body{
+      margin:0;
+      color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans";
+      /* gradient background for visual appeal */
+      background:
+        radial-gradient(1200px 800px at 10% 10%, rgba(124,58,237,.22), transparent 60%),
+        radial-gradient(1200px 800px at 90% 20%, rgba(6,182,212,.18), transparent 60%),
+        radial-gradient(1000px 700px at 50% 100%, rgba(59,130,246,.14), transparent 60%),
+        var(--bg);
+    }
+
+    /* wrapper for page content */
+    .wrap{
+      max-width: 980px;
+      padding: 28px 20px 60px;
+      margin: 0 auto;
+    }
+
+    /* header card at top of page */
+    header.card{
+      background: var(--card);
+      backdrop-filter: blur(6px);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      padding: 22px;
+      margin-top: 28px;
+    }
+
+    h1{
+      font-size: clamp(24px, 2.6vw, 34px);
+      margin: 0 0 4px 0;
+      letter-spacing: .2px;
+    }
+    .muted{ color:var(--muted); margin:8px 0 0 }
+
+    /* -------------------------------
+       TABLE STYLES (results display)
+       ------------------------------- */
+    table{
+      border-collapse: separate;
+      border-spacing: 0;
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      overflow: hidden; /* clip rounded corners */
+      margin: 18px 0 28px;
+    }
+    caption{
+      text-align:left;
+      font-weight:700;
+      padding: 14px 18px 0;
+      color: var(--muted);
+    }
+    thead th{
+      background: linear-gradient(90deg, rgba(124,58,237,.95), rgba(6,182,212,.95));
+      color: white;
+      text-align: left;
+      font-size: .95rem;
+      letter-spacing: .02em;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    td, th{ border-right: 1px solid var(--border); }
+    td:last-child, th:last-child{ border-right: none; }
+
+    tbody td{
+      padding: 12px 14px;
+      font-variant-numeric: tabular-nums;
+    }
+    tbody tr:nth-child(odd){ background: var(--row); }
+    tbody tr:hover{ filter: brightness(1.04); transition: filter .15s ease; }
+
+    /* error rows show in red */
+    tbody tr.error td{
+      background: var(--error);
+      color: var(--errorText);
+      font-weight: 600;
+    }
+
+    /* pill-style labels in captions */
+    .pill{
+      display:inline-block;
+      font-size:.75rem;
+      padding:.25rem .55rem;
+      border:1px solid var(--border);
+      border-radius:999px;
+      margin-left:.5rem;
+      color: var(--muted);
+      background: rgba(255,255,255,.05);
+    }
+
+    footer.note{
+      color:var(--muted);
+      font-size:.95rem;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- HEADER SECTION -->
+    <header class="card">
+      <h1>Simple JavaScript Calculator</h1>
+      <p class="muted">
+        You’ll be prompted for <b>x</b>, an <b>operator</b> (+ − × ÷ %), and <b>y</b>. 
+        Click <b>Cancel</b> on any prompt to stop.
+        Results will appear below with a summary of valid results only.
+      </p>
+    </header>
+  </div>
+
+  <!-- CALCULATOR LOGIC: runs immediately on page load -->
+  <script src="calculator.js"></script>
+
+  <div class="wrap">
+    <!-- FOOTER NOTE -->
+    <footer class="note">Tip: Refresh the page to start over.</footer>
+  </div>
+</body>
+</html>
